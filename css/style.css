@@ -296,6 +296,7 @@ nav.small {
 .home-page-photo {
 	background-image: url(../images/bg-5.jpg);
 	background-size: cover;
+	background-position: center;
 	z-index: -1;
 	position: absolute;
 	top: 0;
