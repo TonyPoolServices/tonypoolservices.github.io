@@ -50,7 +50,7 @@ a {
   color: inherit;
 }
 a:hover,a:focus,a:active {
-  text-decoration: none;
+  text-decoration: underline;
 }
 p {
   color: #737373;
