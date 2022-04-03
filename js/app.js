@@ -230,7 +230,7 @@ jQuery(function ($) {
 
 
             this.$loader.delay(300).fadeOut();
-            this.$animationload.delay(600).fadeOut("slow");
+            this.$animationload.delay(100).fadeOut("slow");
 
             this.$backToTop.click(function () {
                 $("html, body").animate({ scrollTop: 0 }, 1000);
