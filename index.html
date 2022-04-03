@@ -13,6 +13,8 @@
   <!-- Site Title-->
   <title>Fat Boy Pool Services</title>
 
+  <link rel="icon" type="images/x-icon" href="images/logo.png">
+
   <!-- Mobile Specific Metas-->
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -246,7 +248,6 @@
     </section>
     <!-- END SERVICE AREA -->
 
-
     <!-- CONTACT -->
     <section id="contact">
       <div class="container">
@@ -273,9 +274,9 @@
         </div>
         <div class="row">
           <div class="col-md-12">
-            <form role="form" name="ajax-form" id="ajax-form" action="php/contact.php" method="post" class="form-main">
+            <form role="form" name="ajax-form" id="ajax-form" action="https://script.google.com/macros/s/AKfycbyttCrttlu80Mgr0QopAWtTPFya9lDHvblhRh2IxsArTaq0Be1TsEu7TCQx341pNN-g/exec" method="post" class="form-main">
               <div class="col-xs-12">
-                <div class="row">            
+                <div class="row">
                   <div class="form-group col-xs-6">
                     <label for="name2">Name</label>
                     <input class="form-control" id="name2" name="name" onblur="if(this.value == '') this.value='Name'" onfocus="if(this.value == 'Name') this.value=''" type="text" value="Name">
@@ -287,14 +288,21 @@
                     <div class="error" id="err-emailvld" style="display: none;">E-mail is not a valid format</div> 
                   </div>
                 </div>
-                <div class="row">            
+                <div class="row">
+                  <div class="form-group col-xs-12">
+                    <label for="phone2">Phone Number</label>
+                    <input class="form-control" id="phone2" name="phone" type="text" onfocus="if(this.value == 'Phone Number') this.value='';" onblur="if(this.value == '') this.value='Phone Number';" value="Phone Number">
+                    <div class="error" id="err-phone" style="display: none;">Phone number is not a valid format</div>
+                  </div>
+                </div> 
+                <div class="row">
                   <div class="form-group col-xs-12">
                     <label for="message2">Message</label>
                     <textarea class="form-control" id="message2" name="message" onblur="if(this.value == '') this.value='Message'" onfocus="if(this.value == 'Message') this.value=''">Message</textarea>
                     <div class="error" id="err-message" style="display: none;">Please enter message</div>
                   </div>
                 </div> 
-                <div class="row">            
+                <div class="row">
                   <div class="col-xs-12 text-center">
                     <div id="ajaxsuccess">E-mail was successfully sent.</div>
                     <div class="error" id="err-form" style="display: none;">There was a problem validating the form please check!</div>

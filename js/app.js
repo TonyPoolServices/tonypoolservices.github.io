@@ -1,7 +1,7 @@
 /*
-	Delex by TEMPLATE STOCK
-	templatestock.co @templatestock
-	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+    Delex by TEMPLATE STOCK
+    templatestock.co @templatestock
+    Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
 */
 
 
@@ -25,11 +25,13 @@ jQuery(function ($) {
         $contactFormBtn: $("#send"),
         $contactFormName: $("#name2"),
         $contactFormEmail: $("#email2"),
+        $contactFormPhone: $("#phone2"),
         $contactFormMessage: $("#message2"),
         $confirmMessage: $("#ajaxsuccess"),
         $errorMessages: $(".error"),
         $errorName: $("#err-name"),
         $errorEmail: $("#err-emailvld"),
+        $errorPhone: $("#err-phone"),
         $errorMessage: $("#err-message"),
         $errorForm: $("#err-form"),
         $errorTimeout: $("#err-timedout"),
@@ -40,14 +42,14 @@ jQuery(function ($) {
             var error = false; // we will set this true if the form isn't valid
 
             var name = this.$contactFormName.val(); // get the value of the input field
-            if(name == "" || name == " " || name == "Name") {
+            if (name == "" || name == " " || name == "Name") {
                 this.$errorName.show(500);
                 this.$errorName.delay(4000);
                 this.$errorName.animate({
-                    height: 'toggle'  
-                }, 500, function() {
+                    height: 'toggle'
+                }, 500, function () {
                     // Animation complete.
-                }); 
+                });
                 error = true; // change the error state to true
             }
 
@@ -62,34 +64,53 @@ jQuery(function ($) {
                 this.$errorEmail.show(500);
                 this.$errorEmail.delay(4000);
                 this.$errorEmail.animate({
-                    height: 'toggle'  
-                }, 500, function() {
+                    height: 'toggle'
+                }, 500, function () {
                     // Animation complete.
-                });         
+                });
+                error = true;
+            }
+
+            // Match only US numbers
+            // https://stackoverflow.com/questions/16699007/regular-expression-to-match-standard-10-digit-phone-number
+            var phone_compare = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+            var phone = this.$contactFormPhone.val();
+
+            if (phone == "" || phone == " " || phone == "Phone Number") {
+                this.$contactFormEmail.fadIn('slow'); // error - empty
+                error = true;
+            } else if (!phone_compare.test(phone)) {
+                this.$errorPhone.show(500);
+                this.$errorPhone.delay(4000);
+                this.$errorPhone.animate({
+                    height: 'toggle'
+                }, 500, function () {
+                    // Animation complete.
+                });
                 error = true;
             }
 
             var message = this.$contactFormMessage.val(); // get the value of the input field
-            
-            if(message == "" || message == " " || message == "Message") {              
+
+            if (message == "" || message == " " || message == "Message") {
                 this.$errorMessage.show(500);
                 this.$errorMessage.delay(4000);
                 this.$errorMessage.animate({
-                    height: 'toggle'  
-                }, 500, function() {
+                    height: 'toggle'
+                }, 500, function () {
                     // Animation complete.
-                });            
+                });
                 error = true; // change the error state to true
             }
 
-            if(error == true) {
+            if (error == true) {
                 this.$errorForm.show(500);
                 this.$errorForm.delay(4000);
                 this.$errorForm.animate({
-                    height: 'toggle'  
-                }, 500, function() {
+                    height: 'toggle'
+                }, 500, function () {
                     // Animation complete.
-                }); 
+                });
             }
 
             return error;
@@ -98,7 +119,7 @@ jQuery(function ($) {
         contactFormSubmit: function (obj) {
             this.$errorMessages.fadeOut('slow'); // reset the error messages (hides them)
 
-            if(this.validate() == false) {
+            if (this.validate() == false) {
 
                 var data_string = $('#ajax-form').serialize(); // Collect data from form
 
@@ -108,7 +129,7 @@ jQuery(function ($) {
                     url: $this.$contactForm.attr('action'),
                     data: data_string,
                     timeout: 6000,
-                    error: function(request,error) {
+                    error: function (request, error) {
                         if (error == "timeout") {
                             $this.$errorTimeout.slideDown('slow');
                         }
@@ -117,16 +138,17 @@ jQuery(function ($) {
                             $this.$errorState.html('An error occurred: ' + error + '');
                         }
                     },
-                    success: function() {
+                    success: function () {
                         $this.$confirmMessage.show(500);
                         $this.$confirmMessage.delay(4000);
                         $this.$confirmMessage.animate({
-                            height: 'toggle'  
-                            }, 500, function() {
-                        });    
-                        
+                            height: 'toggle'
+                        }, 500, function () {
+                        });
+
                         $this.$contactFormName.val('');
                         $this.$contactFormEmail.val('');
+                        $this.$contactFormPhone.val('');
                         $this.$contactFormMessage.val('');
                     }
                 });
@@ -178,7 +200,7 @@ jQuery(function ($) {
             if ($(window).scrollTop() > 80) {
                 this.$nav.addClass('small');
             } else {
-                this.$nav.removeClass('small'); 
+                this.$nav.removeClass('small');
             }
         },
         //document ready event
@@ -210,12 +232,12 @@ jQuery(function ($) {
             this.$loader.delay(300).fadeOut();
             this.$animationload.delay(600).fadeOut("slow");
 
-            this.$backToTop.click(function(){
+            this.$backToTop.click(function () {
                 $("html, body").animate({ scrollTop: 0 }, 1000);
                 return false;
-            }); 
+            });
 
-            this.$navbarLink.click(function(event) {
+            this.$navbarLink.click(function (event) {
                 var $anchor = $(this);
                 $('html, body').stop().animate({
                     scrollTop: $($anchor.attr('href')).offset().top - 50
@@ -232,7 +254,7 @@ jQuery(function ($) {
                 verticalOffset: 0
             });
 
-            if(this.$testiSlider.length > 0) {
+            if (this.$testiSlider.length > 0) {
                 this.$testiSlider.owlCarousel({
                     // Most important owl features
                     items: 1,
@@ -248,7 +270,7 @@ jQuery(function ($) {
                 });
             }
 
-            if(this.$homeSlider.length > 0) {
+            if (this.$homeSlider.length > 0) {
                 this.$homeSlider.owlCarousel({
                     // Most important owl features
                     paginationSpeed: 1000,
